@@ -1,1 +1,26 @@
-<p>search works!</p>
+<h1>Welcome to a Weather up!</h1>
+
+  <div [hidden]="submitted">
+ <form (ngSubmit)="onSubmit()" #searchCity="ngForm">
+      <div class="form-group">
+        <label for="name">City</label>
+        <input type="text" class="form-control" id="name"
+               required
+               [(ngModel)]="model.name" name="name"
+               #name="ngModel">
+        <div [hidden]="name.valid || name.pristine"
+             class="alert alert-danger">
+          Name is required
+        </div>
+      </div>
+
+     <!-- NOT SHOWN IN DOCS -->
+      <div>
+        <hr>
+        Name via form.controls = {{showFormControls(searchCity)}}
+      </div>
+     <!-- - -->
+  <button type="submit" class="btn btn-success" [disabled]="!searchCity.form.valid">Submit</button>
+    </form>
+    </div>
+    
