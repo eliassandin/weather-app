@@ -1,0 +1,60 @@
+.weather-view mat-icon {
+  line-height: normal;
+  vertical-align: middle;
+  display: inline;
+  font-size: 20px;
+}
+
+.weather-view td p {
+  display: inline;
+  vertical-align: middle;
+  line-height: 24px;
+  font-size: 14px;
+}
+
+.day {
+  background-color: rgb(106, 163, 238);
+}
+
+.night {
+  background-color: rgb(104, 114, 148);
+}
+
+#icon {
+  width: 75px;
+}
+
+#desc {
+  text-align: center;
+  width: 250px;
+}
+
+#temp {
+  width: 100px;
+  text-align: center;
+  color: #A22;
+}
+
+#temp.cold {
+  color: #22A;
+}
+
+#rain {
+  width: 100px;
+  text-align: center;
+  color: blue;
+}
+
+#humid {
+  text-align: center;
+  width: 100px;
+}
+
+#wind {
+  text-align: center;
+  width: 100px;
+}
+
+.weather-view th.mat-header-cell {
+  text-align: center;
+}

@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'weather-app';
+
+  weatherData = "Hello world";
+
+  ngOnInit() {
+    this.weatherData = "Robin and Martin were here!"
+  }
 }
