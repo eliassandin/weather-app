@@ -15,7 +15,7 @@ export class OpenWeatherMapService {
       units: "metric",
       appid: "",
     }
-    var baseUrl = "https://api.openweathermap.org/data/2.5/onecall"
+    var baseUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=London&limit=5&appid=1766139ca73a00ae488fad64f5a917eb';
     var options: any = {
       observe: "body",
       responseType: "json"
@@ -25,9 +25,10 @@ export class OpenWeatherMapService {
       param => `${param}=${params[param]}`
     )
 
-    var url = `${baseUrl}?${v.join("&")}`
-
-    return this.http.get<OneCallData>(url, options);
+    //var url = `${baseUrl}?${v.join("&")}`
+    //console.log(url);
+    console.log(options)
+    return this.http.get<GeoData>(baseUrl, options);
   }
 }
 
@@ -61,7 +62,12 @@ export interface WeatherData {
   rain?: any,
   snow?: any,
 }
-
+export interface GeoData{
+  name: string,
+  lat: number,
+  lon : number,
+  country: string
+}
 export interface OneCallData {
   lat: number,
   lon: number,

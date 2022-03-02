@@ -9,11 +9,18 @@ import { OpenWeatherMapService, OneCallData, WeatherData, WeatherDescription } f
 })
 export class SearchComponent implements OnInit {
   submitted = false;
+
   model = {name: 'hej'};
+
   private url = 'http://api.openweathermap.org/geo/1.0/direct?q=London&limit=5&appid=1766139ca73a00ae488fad64f5a917eb';
+
   posts : any;
+
   configUrl = 'assets/config.json';
-  constructor(private http: HttpClient, private openWeather: OpenWeatherMapService) { }
+
+  constructor(private http: HttpClient, private openWeather: OpenWeatherMapService) {
+
+  }
   
   getPosts() {
 	return this.http.get(this.url);
@@ -27,6 +34,12 @@ export class SearchComponent implements OnInit {
   }
   
   onSubmit(){
+  this.openWeather.requestWeatherData().subscribe(
+      (response: OneCallData) => {
+      	const res = response;
+        console.log(res);
+      }
+    );
   const p = this.getPosts();
   	console.log(p);
   }
