@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { OpenWeatherMapService, OneCallData, WeatherData, WeatherDescription } from '../open-weather-map.service';
+import { OpenWeatherMapService, OneCallData, WeatherData } from '../open-weather-map.service';
+import { PrognosisTableDataSource } from '../prognosis-table/prognosis-table-datasource';
 
 @Component({
   selector: 'app-weather-view',
@@ -24,6 +25,8 @@ export class WeatherViewComponent implements OnInit {
   wind_speed: number = 0;
 
   hourly: WeatherData[] = [];
+
+  hourlyTableObject = new PrognosisTableDataSource();
 
   displayColumns: string[] = [
     "time",
@@ -72,25 +75,29 @@ export class WeatherViewComponent implements OnInit {
 
         this.sunrise = c.sunrise;
         this.sunset = c.sunset;
-
+        
         this.todStyle = this.getTimeOfDayStyle(c.dt);
 
         this.icon = cw.icon;
         this.description = this.capitalize(cw.description);
-
+        
         this.temperature = response.current.temp;
         this.temperatureStyle = this.temperature > 0 ?
         "" : "cold";
-
+        
         if (this.isRainy(c)) {
           var isSnow = 600 <= cw.id && cw.id <= 699;
           this.precipitation = (isSnow ?
             c.snow["1h"] :
             c.rain["1h"]) || 0;
-        }
-        this.wind_speed = c.wind_speed;
+          }
+          this.wind_speed = c.wind_speed;
+          
+          this.hourly = response.hourly;
 
-        this.hourly = response.hourly;
+          this.hourlyTableObject.data = this.hourly;
+          this.hourlyTableObject.sunrise = c.sunrise;
+          this.hourlyTableObject.sunset = c.sunset;
       }
     );
   }

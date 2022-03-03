@@ -11,12 +11,16 @@ import { WeatherViewComponent } from './weather-view/weather-view.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
+import { PrognosisTableComponent } from './prognosis-table/prognosis-table.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchComponent,
-    WeatherViewComponent
+    WeatherViewComponent,
+    PrognosisTableComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +29,9 @@ import { MatTableModule } from '@angular/material/table';
     FormsModule,
     MatIconModule,
     MatTableModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]
