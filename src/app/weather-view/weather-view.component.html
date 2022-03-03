@@ -1,0 +1,63 @@
+<div class="weather-view">
+  <h2>Current</h2>
+  <table>
+    <tr>
+      <td id="icon" class={{todStyle}}>
+        <img src="http://openweathermap.org/img/wn/{{icon}}@2x.png" width="75px"/>
+      </td>
+      <td id="desc">
+        <p>{{description}}</p>
+      </td>
+      <td id="temp" class={{temperatureStyle}}>
+        <mat-icon>thermostat</mat-icon> <p>{{temperature}} &deg;C</p>
+      </td>
+      <td id="rain">
+        <mat-icon>water_drop</mat-icon> <p>{{precipitation}} mm</p>
+      </td>
+      <td id="wind">
+        <mat-icon>air</mat-icon> <p>{{wind_speed}} m/s</p>
+      </td>
+    </tr>
+  </table>
+
+  <h2>Hourly progonsis</h2>
+  <table mat-table [dataSource]="hourly" class="mat-elevation-z8">
+    <ng-container matColumnDef="time">
+      <th mat-header-cell *matHeaderCellDef>Date</th>
+      <td mat-cell *matCellDef="let weather">{{unixToLocal(weather.dt)}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="icon">
+      <th mat-header-cell *matHeaderCellDef>Icon</th>
+      <td class={{getTimeOfDayStyle(weather.dt)}} mat-cell *matCellDef="let weather"><img src="http://openweathermap.org/img/wn/{{weather.weather[0].icon}}@2x.png" width="40px"/></td>
+    </ng-container>
+
+    <ng-container matColumnDef="desc">
+      <th mat-header-cell *matHeaderCellDef>Description</th>
+      <td id="desc" mat-cell *matCellDef="let weather">{{capitalize(weather.weather[0].description)}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="temp">
+      <th mat-header-cell *matHeaderCellDef>Temperature</th>
+      <td id="temp" class={{getTemperatureStyle(weather.temp)}} mat-cell *matCellDef="let weather">{{weather.temp}} &deg;C</td>
+    </ng-container>
+
+    <ng-container matColumnDef="humidity">
+      <th mat-header-cell *matHeaderCellDef>Humidity</th>
+      <td id="humid" mat-cell *matCellDef="let weather">{{weather.humidity}} %</td>
+    </ng-container>
+
+    <ng-container matColumnDef="precipitation">
+      <th mat-header-cell *matHeaderCellDef>Precipitation</th>
+      <td id="rain" mat-cell *matCellDef="let weather">{{weather?.rain || weather?.snow || 0}} mm</td>
+    </ng-container>
+
+    <ng-container matColumnDef="wind">
+      <th mat-header-cell *matHeaderCellDef>Wind</th>
+      <td id="wind" mat-cell *matCellDef="let weather">{{weather.wind_speed}} m/s</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
+  </table>
+</div>

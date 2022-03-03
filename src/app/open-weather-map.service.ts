@@ -8,14 +8,14 @@ import { Observable } from 'rxjs';
 export class OpenWeatherMapService {
   constructor(private http: HttpClient) {}
 
-  requestWeatherData(): Observable<any> {
-    var params: any = {
-      lat: "55.703889",
-      lon: "13.195",
-      units: "metric",
-      appid: "",
-    }
-    var baseUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=London&limit=5&appid=1766139ca73a00ae488fad64f5a917eb';
+  doRequest<T>(url: string, ourParams: any): Observable<any> {
+    var params = {
+      appid: "1766139ca73a00ae488fad64f5a917eb",
+      ...ourParams
+    };
+
+    var baseUrl = `https://api.openweathermap.org/${url}`;
+
     var options: any = {
       observe: "body",
       responseType: "json"
@@ -25,10 +25,26 @@ export class OpenWeatherMapService {
       param => `${param}=${params[param]}`
     )
 
-    //var url = `${baseUrl}?${v.join("&")}`
-    //console.log(url);
-    console.log(options)
-    return this.http.get<GeoData>(baseUrl, options);
+    return this.http.get<T>(`${baseUrl}?${v.join("&")}`, options);
+  }  
+
+  requestGeoData(): Observable<any> {
+    var params: any = {
+      q: "Lodnon",
+      limit: 5
+    };
+
+    return this.doRequest<GeoData>("geo/1.0/direct", params);
+  }
+
+  requestWeatherData(): Observable<any> {
+    var params: any = {
+      lat: "55.703889",
+      lon: "13.195",
+      units: "metric",
+    };
+
+    return this.doRequest<OneCallData>("data/2.5/onecall", params);
   }
 }
 
@@ -62,12 +78,14 @@ export interface WeatherData {
   rain?: any,
   snow?: any,
 }
-export interface GeoData{
+
+export interface GeoData {
   name: string,
   lat: number,
   lon : number,
   country: string
 }
+
 export interface OneCallData {
   lat: number,
   lon: number,
