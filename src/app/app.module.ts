@@ -10,6 +10,9 @@ import { WeatherViewComponent } from './weather-view/weather-view.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
+import { PrognosisTableComponent } from './prognosis-table/prognosis-table.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 import {MatListModule} from '@angular/material/list';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
@@ -22,7 +25,8 @@ import { HomeComponent } from './home/home.component';
     AppComponent,
     SearchComponent,
     WeatherViewComponent,
-    HomeComponent
+    HomeComponent,
+    PrognosisTableComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +39,9 @@ import { HomeComponent } from './home/home.component';
     MatListModule,
     MatInputModule,
     MatButtonModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]
