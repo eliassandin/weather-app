@@ -14,13 +14,15 @@ import { MatTableModule } from '@angular/material/table';
 import { PrognosisTableComponent } from './prognosis-table/prognosis-table.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { CityViewComponent } from './city-view/city-view.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchComponent,
     WeatherViewComponent,
-    PrognosisTableComponent
+    PrognosisTableComponent,
+    CityViewComponent
   ],
   imports: [
     BrowserModule,
