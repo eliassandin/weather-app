@@ -75,13 +75,13 @@ export class WeatherViewComponent implements OnInit {
 
         this.sunrise = c.sunrise;
         this.sunset = c.sunset;
-        
+
         this.todStyle = this.getTimeOfDayStyle(c.dt);
 
         this.icon = cw.icon;
         this.description = this.capitalize(cw.description);
         
-        this.temperature = response.current.temp;
+        this.temperature = response.current.temp as number;
         this.temperatureStyle = this.temperature > 0 ?
         "" : "cold";
         
