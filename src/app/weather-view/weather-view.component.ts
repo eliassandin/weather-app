@@ -93,7 +93,7 @@ export class WeatherViewComponent implements OnInit, OnChanges {
         this.icon = cw.icon;
         this.description = this.capitalize(cw.description);
 
-        this.temperature = response.current.temp;
+        this.temperature = response.current.temp as number;
         this.temperatureStyle = this.temperature > 0 ?
         "" : "cold";
 
