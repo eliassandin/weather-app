@@ -90,7 +90,7 @@ export interface WeatherData {
 export interface GeoData {
   name: string,
   lat: number,
-  lon : number,
+  lon: number,
   country: string
 }
 

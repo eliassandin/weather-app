@@ -35,6 +35,8 @@ export class PrognosisTableComponent implements AfterViewInit {
     var ctime = new Date(dt*1000).getHours();
     var stime = new Date(this.dataSource.sunrise*1000).getHours();
     var etime = new Date(this.dataSource.sunset*1000).getHours();
+    if (stime == etime)
+      return "day";
     return stime < ctime && ctime <= etime ?
       "day" : "night";
   }

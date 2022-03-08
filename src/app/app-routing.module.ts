@@ -4,7 +4,7 @@ import { CityViewComponent } from './city-view/city-view.component';
 import { WeatherViewComponent } from './weather-view/weather-view.component';
 
 const routes: Routes = [
-  {path: "city", component: CityViewComponent},
+  {path: "city/:id", component: CityViewComponent, },
   {path: "", component: WeatherViewComponent}
 ];
 
