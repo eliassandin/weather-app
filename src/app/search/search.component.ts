@@ -34,14 +34,8 @@ export class SearchComponent implements OnInit {
   }
   
   onSubmit(){
-  this.openWeather.requestWeatherData().subscribe(
-      (response: OneCallData) => {
-      	const res = response;
-        console.log(res);
-      }
-    );
-  const p = this.getPosts();
-  	console.log(p);
+    const p = this.getPosts();
+      console.log(p);
   }
 
 }
