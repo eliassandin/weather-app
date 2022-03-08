@@ -1,4 +1,4 @@
-<app-search></app-search>
-<app-weather-view></app-weather-view>
+<app-search (sendGeoData)="setData($event)"></app-search>
+<app-weather-view [location] = "data" ></app-weather-view>
 
 <router-outlet></router-outlet>

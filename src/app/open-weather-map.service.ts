@@ -6,8 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class OpenWeatherMapService {
-  constructor(private http: HttpClient) {}
-
+  constructor(private http: HttpClient) {
+  }
   doRequest<T>(url: string, ourParams: any): Observable<any> {
     var params = {
       appid: "1766139ca73a00ae488fad64f5a917eb",
@@ -24,23 +24,22 @@ export class OpenWeatherMapService {
     var v: string[] = Object.keys(params).map(
       param => `${param}=${params[param]}`
     )
-
     return this.http.get<T>(`${baseUrl}?${v.join("&")}`, options);
   }  
 
-  requestGeoData(): Observable<any> {
+  requestGeoData(city : String): Observable<any> {
     var params: any = {
-      q: "Lodnon",
+      q: city,
       limit: 5
     };
 
-    return this.doRequest<GeoData>("geo/1.0/direct", params);
+    return this.doRequest<GeoData[]>("geo/1.0/direct", params);
   }
 
-  requestWeatherData(): Observable<any> {
+  requestWeatherData(data :GeoData): Observable<any> {
     var params: any = {
-      lat: "55.703889",
-      lon: "13.195",
+      lat: data.lat.toString(),
+      lon: data.lon.toString(),
       units: "metric",
     };
 

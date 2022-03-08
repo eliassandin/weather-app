@@ -1,14 +1,28 @@
-import { Component, OnInit } from '@angular/core';
-import { OpenWeatherMapService, OneCallData, WeatherData, WeatherDescription } from '../open-weather-map.service';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { OpenWeatherMapService, OneCallData, WeatherData, WeatherDescription, GeoData } from '../open-weather-map.service';
 
 @Component({
   selector: 'app-weather-view',
   templateUrl: './weather-view.component.html',
   styleUrls: ['./weather-view.component.css']
 })
-export class WeatherViewComponent implements OnInit {
+export class WeatherViewComponent implements OnInit, OnChanges {
 
   constructor(private openWeather: OpenWeatherMapService) { }
+
+  @Input() location : GeoData = {
+    lat: 55.703889,
+    lon: 13.195,
+    name: 'London',
+    country: 'GB'
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    console.log(this.location);
+    changes['location'];
+    this.update();
+
+  }
 
   todStyle: string = "day";
   temperatureStyle: string = "temp";
@@ -61,9 +75,8 @@ export class WeatherViewComponent implements OnInit {
   getTemperatureStyle(temperature: number): string {
     return temperature > 0 ? "hot" : "cold";
   }
-
-  ngOnInit(): void {
-    this.openWeather.requestWeatherData().subscribe(
+  update() {
+    this.openWeather.requestWeatherData(this.location).subscribe(
       (response: OneCallData) => {
         this.debug = JSON.stringify(response);
 
@@ -93,5 +106,9 @@ export class WeatherViewComponent implements OnInit {
         this.hourly = response.hourly;
       }
     );
+  }
+  
+  ngOnInit(): void {
+    this.update();
   }
 }
