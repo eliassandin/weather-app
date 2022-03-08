@@ -1,33 +1,35 @@
 import { Injectable } from '@angular/core';
+import { GeoData } from './open-weather-map.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppDataService {
-  defaultLocation: LocationData = {
+  defaultLocation: GeoData = {
     name: "Lund",
     country: "Sweden",
-    latitude: 55.703889,
-    longitude: 13.195,
+    lat: 55.703889,
+    lon: 13.195,
   };
-  displayedLocation: LocationData;
+  displayedLocation: GeoData;
+
+  locationCache: Map<string, GeoData> = new Map();
 
   constructor() {
     this.displayedLocation = this.defaultLocation;
   }
 
-  getDisplayedLocation(): LocationData {
+  cacheLocationData(data: GeoData) {
+    if(!this.locationCache.has(data.name))
+      this.locationCache.set(data.name, data);
+  }
+
+  getDisplayedLocation(): GeoData {
     return this.displayedLocation;
   }
 
-  getLocationOrDefault(location: string): LocationData {
-    return this.defaultLocation;
-  } 
+  getLocation(name: string): GeoData | undefined {
+    console.log(this.locationCache.keys)
+    return this.locationCache.get(name);
+  }
 }
-
-export interface LocationData {
-  name: string,
-  country: string,
-  latitude: number,
-  longitude: number
-};

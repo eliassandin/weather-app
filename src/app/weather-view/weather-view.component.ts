@@ -71,7 +71,7 @@ export class WeatherViewComponent implements OnInit {
 
   ngOnInit(): void {
     var location = this.appData.getDisplayedLocation();
-    this.openWeather.requestWeatherData(location.latitude, location.longitude).subscribe(
+    this.openWeather.requestWeatherData(location.lat, location.lon).subscribe(
       (response: OneCallData) => {
         this.debug = JSON.stringify(response);
 

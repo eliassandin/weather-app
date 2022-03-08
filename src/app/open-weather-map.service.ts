@@ -28,13 +28,13 @@ export class OpenWeatherMapService {
     return this.http.get<T>(`${baseUrl}?${v.join("&")}`, options);
   }  
 
-  requestGeoData(): Observable<any> {
+  requestGeoData(name: string): Observable<any> {
     var params: any = {
-      q: "Lodnon",
+      q: name,
       limit: 5
     };
 
-    return this.doRequest<GeoData>("geo/1.0/direct", params);
+    return this.doRequest<GeoData[]>("geo/1.0/direct", params);
   }
 
   requestWeatherData(latitude: number, longitude: number): Observable<any> {
@@ -46,8 +46,6 @@ export class OpenWeatherMapService {
 
     return this.doRequest<OneCallData>("data/2.5/onecall", params);
   }
-
-
 }
 
 export interface PrecipitationData {
@@ -93,7 +91,7 @@ export interface WeatherData {
 export interface GeoData {
   name: string,
   lat: number,
-  lon : number,
+  lon: number,
   country: string
 }
 

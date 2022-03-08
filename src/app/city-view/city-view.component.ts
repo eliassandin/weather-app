@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { OneCallData, OpenWeatherMapService } from '../open-weather-map.service';
+import { ActivatedRoute } from '@angular/router';
+import { AppDataService } from '../app-data.service';
+import { GeoData, OneCallData, OpenWeatherMapService } from '../open-weather-map.service';
 import { PrognosisTableDataSource } from '../prognosis-table/prognosis-table-datasource';
 
 @Component({
@@ -9,13 +11,30 @@ import { PrognosisTableDataSource } from '../prognosis-table/prognosis-table-dat
 })
 export class CityViewComponent implements OnInit {
 
-  constructor(private openWeather: OpenWeatherMapService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private appData: AppDataService,
+    private openWeather: OpenWeatherMapService
+  ) { }
 
   dailyTableObject = new PrognosisTableDataSource();
 
+  displayedName: string = "";
+  displayedLocation: GeoData | undefined;
+
   ngOnInit(): void {
-    this.openWeather.requestWeatherData(0 , 0).subscribe((response: OneCallData) => {
-      this.dailyTableObject.data = response.daily;
-    });
+    this.displayedName = this.route.snapshot.params["id"];
+    this.openWeather.requestGeoData(this.displayedName).subscribe(
+      (response: GeoData[]) => {
+        this.displayedLocation = response[0];
+        this.openWeather.requestWeatherData(
+          this.displayedLocation?.lat || 0,
+          this.displayedLocation?.lon || 0
+        ).subscribe((response: OneCallData) => {
+          console.log(response);
+          this.dailyTableObject.data = response.daily;
+        });
+      }
+    )
   }
 }
