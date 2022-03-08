@@ -37,7 +37,7 @@ export class SearchComponent implements OnInit {
 	return this.http.get(this.url);
   }
   ngOnInit(): void {
-  
+
   }
   showFormControls(form: any) {
     this.city = form && form.controls['name'] &&
@@ -45,9 +45,9 @@ export class SearchComponent implements OnInit {
   }
 
 
-  
+
   onSubmit(){
-  
+
     this.openWeather.requestGeoData(this.city).subscribe(
       (response: GeoData[]) => {
       	const res = response;

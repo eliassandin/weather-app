@@ -14,7 +14,7 @@ export class CityViewComponent implements OnInit {
   dailyTableObject = new PrognosisTableDataSource();
 
   ngOnInit(): void {
-    this.openWeather.requestWeatherData().subscribe((response: OneCallData) => {
+    this.openWeather.requestWeatherData(0 , 0).subscribe((response: OneCallData) => {
       this.dailyTableObject.data = response.daily;
     });
   }
