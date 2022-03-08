@@ -1,4 +1,4 @@
-<h1>Welcome to a Weather up!</h1>
+<h1>Welcome to a Weather App!</h1>
 
   <div [hidden]="submitted">
  <form (ngSubmit)="onSubmit()" #searchCity="ngForm">
@@ -17,8 +17,11 @@
      <!-- NOT SHOWN IN DOCS -->
       <div>
         <hr>
-        Name via form.controls = {{showFormControls(searchCity)}}
+        {{showFormControls(searchCity)}}
       </div>
+      <mat-nav-list>
+        <a mat-list-item href="..." *ngFor="let location of locationList"> {{ location.name + ' ' + location.country }} </a>
+      </mat-nav-list>
      <!-- - -->
   <button type="submit" class="btn btn-success" [disabled]="!searchCity.form.valid">Submit</button>
     </form>

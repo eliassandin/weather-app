@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from  '@angular/common/http';
-import { OpenWeatherMapService, OneCallData, WeatherData, WeatherDescription } from '../open-weather-map.service';
+import { OpenWeatherMapService, OneCallData, WeatherData, WeatherDescription, GeoData} from '../open-weather-map.service';
+import {MatListModule} from '@angular/material/list';
 
 @Component({
   selector: 'app-search',
@@ -14,10 +15,18 @@ export class SearchComponent implements OnInit {
 
   private url = 'http://api.openweathermap.org/geo/1.0/direct?q=London&limit=5&appid=1766139ca73a00ae488fad64f5a917eb';
 
+  private baseUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=';
+
+  private end = '&limit=5&appid=1766139ca73a00ae488fad64f5a917eb';
+  
   posts : any;
+
+  private city = "";
 
   configUrl = 'assets/config.json';
 
+  locationList : GeoData[] = [];
+  links  = [this.url, this.url, this.url];
   constructor(private http: HttpClient, private openWeather: OpenWeatherMapService) {
 
   }
@@ -29,19 +38,20 @@ export class SearchComponent implements OnInit {
   
   }
   showFormControls(form: any) {
-    return form && form.controls['name'] &&
+  	this.city = form && form.controls['name'] &&
     form.controls['name'].value;
+    
+    
   }
   
   onSubmit(){
-  this.openWeather.requestWeatherData().subscribe(
-      (response: OneCallData) => {
-      	const res = response;
-        console.log(res);
+  let url = this.baseUrl + this.city + this.end;
+  this.openWeather.requestWeatherData(url).subscribe(
+      (response: GeoData[]) => {
+      	const res = response.map(e => [e.name, e.country, e.lat, e.lon]);
+        this.locationList = response;
       }
     );
-  const p = this.getPosts();
-  	console.log(p);
   }
 
 }

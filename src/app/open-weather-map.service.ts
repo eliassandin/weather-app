@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class OpenWeatherMapService {
   constructor(private http: HttpClient) {}
 
-  requestWeatherData(): Observable<any> {
+  requestWeatherData(url: string): Observable<any> {
     var params: any = {
       lat: "55.703889",
       lon: "13.195",
@@ -28,7 +28,7 @@ export class OpenWeatherMapService {
     //var url = `${baseUrl}?${v.join("&")}`
     //console.log(url);
     console.log(options)
-    return this.http.get<GeoData>(baseUrl, options);
+    return this.http.get<GeoData[]>(url, options);
   }
 }
 
