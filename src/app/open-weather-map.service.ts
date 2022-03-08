@@ -25,7 +25,7 @@ export class OpenWeatherMapService {
       param => `${param}=${params[param]}`
     )
     return this.http.get<T>(`${baseUrl}?${v.join("&")}`, options);
-  }  
+  }
 
   requestGeoData(city : String): Observable<any> {
     var params: any = {

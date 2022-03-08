@@ -8,7 +8,10 @@ import { PrognosisTableDataSource } from '../prognosis-table/prognosis-table-dat
 })
 export class WeatherViewComponent implements OnInit, OnChanges {
 
-  constructor(private openWeather: OpenWeatherMapService) { }
+  constructor(
+    private openWeather: OpenWeatherMapService,
+    private appData: AppDataService,
+  ) { }
 
   @Input() location : GeoData = {
     lat: 55.703889,
