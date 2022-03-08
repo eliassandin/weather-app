@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppDataService } from '../app-data.service';
 import { OpenWeatherMapService, OneCallData, WeatherData } from '../open-weather-map.service';
 import { PrognosisTableDataSource } from '../prognosis-table/prognosis-table-datasource';
 
@@ -9,7 +10,10 @@ import { PrognosisTableDataSource } from '../prognosis-table/prognosis-table-dat
 })
 export class WeatherViewComponent implements OnInit {
 
-  constructor(private openWeather: OpenWeatherMapService) { }
+  constructor(
+    private openWeather: OpenWeatherMapService,
+    private appData: AppDataService,
+  ) { }
 
   todStyle: string = "day";
   temperatureStyle: string = "temp";
@@ -66,7 +70,8 @@ export class WeatherViewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.openWeather.requestWeatherData().subscribe(
+    var location = this.appData.getDisplayedLocation();
+    this.openWeather.requestWeatherData(location.latitude, location.longitude).subscribe(
       (response: OneCallData) => {
         this.debug = JSON.stringify(response);
 

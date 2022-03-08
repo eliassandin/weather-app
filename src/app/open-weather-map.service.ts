@@ -37,15 +37,17 @@ export class OpenWeatherMapService {
     return this.doRequest<GeoData>("geo/1.0/direct", params);
   }
 
-  requestWeatherData(): Observable<any> {
+  requestWeatherData(latitude: number, longitude: number): Observable<any> {
     var params: any = {
-      lat: "55.703889",
-      lon: "13.195",
+      lat: latitude.toString(),
+      lon: longitude.toString(),
       units: "metric",
     };
 
     return this.doRequest<OneCallData>("data/2.5/onecall", params);
   }
+
+
 }
 
 export interface PrecipitationData {
