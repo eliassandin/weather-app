@@ -10,7 +10,7 @@ export class OpenWeatherMapService {
   }
   doRequest<T>(url: string, ourParams: any): Observable<any> {
     var params = {
-      appid: "",
+      appid: "7dadd78c9342b798a77fbc3d688eb48c",
       ...ourParams
     };
 

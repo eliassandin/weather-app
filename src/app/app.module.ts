@@ -28,7 +28,7 @@ import { HomeComponent } from './home/home.component';
     SearchComponent,
     WeatherViewComponent,
     PrognosisTableComponent,
-    CityViewComponent
+    CityViewComponent,
     HomeComponent
   ],
   imports: [

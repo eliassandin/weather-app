@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { AppDataService } from '../app-data.service';
 import { OpenWeatherMapService, OneCallData, WeatherData, WeatherDescription, GeoData } from '../open-weather-map.service';
 import { PrognosisTableDataSource } from '../prognosis-table/prognosis-table-datasource';
 @Component({

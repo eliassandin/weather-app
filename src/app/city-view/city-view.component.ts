@@ -28,8 +28,7 @@ export class CityViewComponent implements OnInit {
       (response: GeoData[]) => {
         this.displayedLocation = response[0];
         this.openWeather.requestWeatherData(
-          this.displayedLocation?.lat || 0,
-          this.displayedLocation?.lon || 0
+          this.displayedLocation
         ).subscribe((response: OneCallData) => {
           console.log(response);
           this.dailyTableObject.data = response.daily;
