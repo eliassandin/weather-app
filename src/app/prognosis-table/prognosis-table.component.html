@@ -27,7 +27,7 @@
 
     <ng-container matColumnDef="precipitation">
       <th mat-header-cell *matHeaderCellDef>Precipitation</th>
-      <td id="rain" mat-cell *matCellDef="let weather">{{weather?.rain || weather?.snow || 0}} mm</td>
+      <td id="rain" mat-cell *matCellDef="let weather">{{getPrecipitation(weather)}} mm</td>
     </ng-container>
 
     <ng-container matColumnDef="wind">

@@ -31,6 +31,14 @@ export class PrognosisTableComponent implements AfterViewInit {
     this.table.dataSource = this.dataSource;
   }
 
+  getPrecipitation(weather: any): number {
+    if (weather?.rain)
+      return weather.rain["1h"]
+    if (weather?.snow)
+      return weather.snow["1h"]
+    return 0
+  }
+
   getTimeOfDayStyle(dt: number): string {
     var ctime = new Date(dt*1000).getHours();
     var stime = new Date(this.dataSource.sunrise*1000).getHours();
