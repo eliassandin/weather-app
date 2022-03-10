@@ -17,7 +17,7 @@
 
     <ng-container matColumnDef="temp">
       <th mat-header-cell *matHeaderCellDef>Temperature</th>
-      <td id="temp" class={{getTemperatureStyle(weather.temp)}} mat-cell *matCellDef="let weather">{{weather.temp}} &deg;C</td>
+      <td id="temp" class={{getTemperatureStyle(weather.temp)}} mat-cell *matCellDef="let weather">{{getTemperature(weather)}} &deg;C</td>
     </ng-container>
 
     <ng-container matColumnDef="humidity">

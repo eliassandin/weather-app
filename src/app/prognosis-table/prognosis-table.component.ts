@@ -42,10 +42,23 @@ export class PrognosisTableComponent implements AfterViewInit, OnChanges {
 
   getPrecipitation(weather: any): number {
     if (weather?.rain)
-      return weather.rain["1h"]
+      if(weather.rain["1h"])
+        return weather.rain["1h"]
+      else
+        return weather.rain
     if (weather?.snow)
-      return weather.snow["1h"]
+      if(weather.snow["1h"])
+        return weather.snow["1h"]
+      else
+        return weather.snow
     return 0
+  }
+
+  getTemperature(weather: any): string {
+    if(!weather.temp.day)
+      return `${weather.temp}`
+    else
+      return `${weather.temp.min} - ${weather.temp.max}`
   }
 
   getTimeOfDayStyle(dt: number): string {
@@ -58,7 +71,9 @@ export class PrognosisTableComponent implements AfterViewInit, OnChanges {
       "day" : "night";
   }
 
-  getTemperatureStyle(temperature: number): string {
+  getTemperatureStyle(temperature: any): string {
+    if(temperature.day)
+      return temperature.day > 0 ? "hot" : "cold";
     return temperature > 0 ? "hot" : "cold";
   }
 
