@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { AppDataService } from '../app-data.service';
-import { OpenWeatherMapService, OneCallData, WeatherData, WeatherDescription, GeoData } from '../open-weather-map.service';
+import { OpenWeatherMapService, OneCallData, WeatherData, GeoData } from '../open-weather-map.service';
 import { PrognosisTableDataSource } from '../prognosis-table/prognosis-table-datasource';
 @Component({
   selector: 'app-weather-view',
@@ -8,7 +8,6 @@ import { PrognosisTableDataSource } from '../prognosis-table/prognosis-table-dat
   styleUrls: ['./weather-view.component.css']
 })
 export class WeatherViewComponent implements OnInit, OnChanges {
-
   constructor(
     private openWeather: OpenWeatherMapService,
     private appData: AppDataService,
@@ -22,10 +21,8 @@ export class WeatherViewComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(this.location);
-    changes['location'];
+    console.log("WeatherViewComponent received Change!")
     this.update();
-
   }
 
   todStyle: string = "day";
@@ -63,7 +60,7 @@ export class WeatherViewComponent implements OnInit, OnChanges {
 
   unixToLocal(dt: number): string {
     var d = new Date(dt*1000);
-    return `${d.getDay()} - ${d.getHours()}`;
+    return `${d.getDate()} - ${d.getHours()}`;
   }
 
   isRainy(weather: WeatherData): boolean {

@@ -14,11 +14,10 @@ import { MatTableModule } from '@angular/material/table';
 import { PrognosisTableComponent } from './prognosis-table/prognosis-table.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-import { CityViewComponent } from './city-view/city-view.component';
-import {MatListModule} from '@angular/material/list';
-import {MatInputModule} from '@angular/material/input';
-import {MatButtonModule} from '@angular/material/button';
-import {MatToolbarModule} from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { HomeComponent } from './home/home.component';
 
 
@@ -28,7 +27,6 @@ import { HomeComponent } from './home/home.component';
     SearchComponent,
     WeatherViewComponent,
     PrognosisTableComponent,
-    CityViewComponent,
     HomeComponent
   ],
   imports: [
