@@ -1,5 +1,5 @@
-import { EventEmitter, Injectable, Output } from '@angular/core';
-import { GeoData, WeatherData } from './open-weather-map.service';
+import { EventEmitter, Injectable } from '@angular/core';
+import { GeoData } from './open-weather-map.service';
 
 @Injectable({
   providedIn: 'root'
