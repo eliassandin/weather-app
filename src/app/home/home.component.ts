@@ -1,7 +1,5 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { HttpClient } from  '@angular/common/http';
-import { OpenWeatherMapService, OneCallData, WeatherData, WeatherDescription, GeoData } from '../open-weather-map.service';
-import { Output, EventEmitter } from '@angular/core';
+import { Component, OnChanges, SimpleChanges } from '@angular/core';
+import { GeoData } from '../open-weather-map.service';
 import { AppDataService } from '../app-data.service';
 
 
