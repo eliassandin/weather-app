@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
@@ -9,7 +9,7 @@ import { PrognosisTableDataSource, PrognosisTableItem } from './prognosis-table-
   templateUrl: './prognosis-table.component.html',
   styleUrls: ['./prognosis-table.component.css']
 })
-export class PrognosisTableComponent implements AfterViewInit {
+export class PrognosisTableComponent implements AfterViewInit, OnChanges {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<PrognosisTableItem>;
@@ -25,6 +25,15 @@ export class PrognosisTableComponent implements AfterViewInit {
     "wind"
   ];
   @Input() dataSource = new PrognosisTableDataSource();
+
+  @Input() pageOptions: number[] = [
+    6, 12, 24, 48
+  ]
+  @Input() defaultPageOption: number = 24;
+
+  ngOnChanges(changes: SimpleChanges): void {
+      this.table.dataSource = this.dataSource;
+  }
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
