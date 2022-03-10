@@ -38,8 +38,10 @@ export class WeatherViewComponent implements OnInit, OnChanges {
   wind_speed: number = 0;
 
   hourly: WeatherData[] = [];
+  daily: WeatherData[] = [];
 
   hourlyTableObject = new PrognosisTableDataSource();
+  weeklyTableObject = new PrognosisTableDataSource();
 
   displayColumns: string[] = [
     "time",
@@ -110,6 +112,11 @@ export class WeatherViewComponent implements OnInit, OnChanges {
           this.hourlyTableObject.data = this.hourly;
           this.hourlyTableObject.sunrise = c.sunrise;
           this.hourlyTableObject.sunset = c.sunset;
+
+          this.daily = response.daily;
+
+          console.log(this.daily);
+          this.weeklyTableObject.data = this.daily;
       }
     );
   }
