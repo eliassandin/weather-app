@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { GeoData } from './open-weather-map.service';
+import { EventEmitter, Injectable, Output } from '@angular/core';
+import { GeoData, WeatherData } from './open-weather-map.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,21 +15,18 @@ export class AppDataService {
 
   locationCache: Map<string, GeoData> = new Map();
 
+  locationUpdated: EventEmitter<void> = new EventEmitter();
+
   constructor() {
     this.displayedLocation = this.defaultLocation;
   }
 
-  cacheLocationData(data: GeoData) {
-    if(!this.locationCache.has(data.name))
-      this.locationCache.set(data.name, data);
+  setDisplayedLocation(data: GeoData) {
+    this.displayedLocation = data;
+    this.locationUpdated.emit();
   }
 
   getDisplayedLocation(): GeoData {
     return this.displayedLocation;
-  }
-
-  getLocation(name: string): GeoData | undefined {
-    console.log(this.locationCache.keys)
-    return this.locationCache.get(name);
   }
 }
