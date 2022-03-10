@@ -13,9 +13,9 @@ export class AppComponent {
   	lat: 1,
   	lon : 2,
   	country: 'GB'
-  }; 
+  };
   weatherData = "Hello world";
-  
+
   setData(newItem: GeoData) {
   	console.log(newItem);
     this.data = newItem;

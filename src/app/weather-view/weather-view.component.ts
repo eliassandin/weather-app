@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { AppDataService } from '../app-data.service';
 import { OpenWeatherMapService, OneCallData, WeatherData, WeatherDescription, GeoData } from '../open-weather-map.service';
-
+import { PrognosisTableDataSource } from '../prognosis-table/prognosis-table-datasource';
 @Component({
   selector: 'app-weather-view',
   templateUrl: './weather-view.component.html',
@@ -8,7 +9,10 @@ import { OpenWeatherMapService, OneCallData, WeatherData, WeatherDescription, Ge
 })
 export class WeatherViewComponent implements OnInit, OnChanges {
 
-  constructor(private openWeather: OpenWeatherMapService) { }
+  constructor(
+    private openWeather: OpenWeatherMapService,
+    private appData: AppDataService,
+  ) { }
 
   @Input() location : GeoData = {
     lat: 55.703889,
@@ -38,6 +42,8 @@ export class WeatherViewComponent implements OnInit, OnChanges {
   wind_speed: number = 0;
 
   hourly: WeatherData[] = [];
+
+  hourlyTableObject = new PrognosisTableDataSource();
 
   displayColumns: string[] = [
     "time",
@@ -91,7 +97,7 @@ export class WeatherViewComponent implements OnInit, OnChanges {
         this.icon = cw.icon;
         this.description = this.capitalize(cw.description);
 
-        this.temperature = response.current.temp;
+        this.temperature = response.current.temp as number;
         this.temperatureStyle = this.temperature > 0 ?
         "" : "cold";
 
@@ -100,14 +106,18 @@ export class WeatherViewComponent implements OnInit, OnChanges {
           this.precipitation = (isSnow ?
             c.snow["1h"] :
             c.rain["1h"]) || 0;
-        }
-        this.wind_speed = c.wind_speed;
+          }
+          this.wind_speed = c.wind_speed;
 
-        this.hourly = response.hourly;
+          this.hourly = response.hourly;
+
+          this.hourlyTableObject.data = this.hourly;
+          this.hourlyTableObject.sunrise = c.sunrise;
+          this.hourlyTableObject.sunset = c.sunset;
       }
     );
   }
-  
+
   ngOnInit(): void {
     this.update();
   }

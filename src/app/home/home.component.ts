@@ -52,7 +52,7 @@ export class HomeComponent implements OnInit {
     "wind"
   ];
   debug: string = "";
-  
+
   model = {name: 'hej'};
 
   private url = 'http://api.openweathermap.org/geo/1.0/direct?q=London&limit=5&appid=1766139ca73a00ae488fad64f5a917eb';
@@ -96,7 +96,7 @@ export class HomeComponent implements OnInit {
   getPosts() {
 	return this.http.get(this.url);
   }
-  
+
 update() {
     this.openWeather.requestWeatherData(this.lund).subscribe(
       (response: OneCallData) => {
@@ -113,7 +113,7 @@ update() {
         this.icon = cw.icon;
         this.description = this.capitalize(cw.description);
 
-        this.temperature = response.current.temp;
+        this.temperature = response.current.temp as number;
         this.temperatureStyle = this.temperature > 0 ?
         "" : "cold";
 
@@ -129,11 +129,11 @@ update() {
       }
     );
   }
-  
+
   ngOnInit(): void {
     this.update();
   }
-  
+
 
 
   showFormControls(form: any) {
@@ -142,9 +142,9 @@ update() {
   }
 
 
-  
+
   onSubmit(){
-  
+
     this.openWeather.requestGeoData(this.city).subscribe(
       (response: GeoData[]) => {
       	const res = response;

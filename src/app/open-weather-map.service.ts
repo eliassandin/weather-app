@@ -10,7 +10,7 @@ export class OpenWeatherMapService {
   }
   doRequest<T>(url: string, ourParams: any): Observable<any> {
     var params = {
-      appid: "1766139ca73a00ae488fad64f5a917eb",
+      appid: "7dadd78c9342b798a77fbc3d688eb48c",
       ...ourParams
     };
 
@@ -25,7 +25,7 @@ export class OpenWeatherMapService {
       param => `${param}=${params[param]}`
     )
     return this.http.get<T>(`${baseUrl}?${v.join("&")}`, options);
-  }  
+  }
 
   requestGeoData(city : String): Observable<any> {
     var params: any = {
@@ -59,12 +59,21 @@ export interface WeatherDescription {
   icon: string,
 }
 
+export interface DailyTemperatureData {
+  day: number,
+  min: number,
+  max: number,
+  night: number,
+  eve: number,
+  morn: number,
+}
+
 export interface WeatherData {
   dt: number,
   sunrise: number,
   sunset: number,
-  temp: number,
-  feels_like: number,
+  temp: number | DailyTemperatureData,
+  feels_like: number | DailyTemperatureData,
   pressure: number,
   humidity: number,
   dew_point: number,
@@ -81,7 +90,7 @@ export interface WeatherData {
 export interface GeoData {
   name: string,
   lat: number,
-  lon : number,
+  lon: number,
   country: string
 }
 
@@ -93,4 +102,5 @@ export interface OneCallData {
   current: WeatherData,
   minutely: PrecipitationData[],
   hourly: WeatherData[],
+  daily: WeatherData[],
 }

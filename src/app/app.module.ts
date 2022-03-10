@@ -6,10 +6,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SearchComponent } from './search/search.component';
 import { FormsModule } from '@angular/forms';
+
 import { WeatherViewComponent } from './weather-view/weather-view.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
+import { PrognosisTableComponent } from './prognosis-table/prognosis-table.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { CityViewComponent } from './city-view/city-view.component';
 import {MatListModule} from '@angular/material/list';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
@@ -22,6 +27,8 @@ import { HomeComponent } from './home/home.component';
     AppComponent,
     SearchComponent,
     WeatherViewComponent,
+    PrognosisTableComponent,
+    CityViewComponent,
     HomeComponent
   ],
   imports: [
@@ -35,7 +42,9 @@ import { HomeComponent } from './home/home.component';
     MatListModule,
     MatInputModule,
     MatButtonModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]
