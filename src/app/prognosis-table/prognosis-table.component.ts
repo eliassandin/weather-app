@@ -40,7 +40,7 @@ export class PrognosisTableComponent implements AfterViewInit {
     return stime < ctime && ctime <= etime ?
       "day" : "night";
   }
-  
+
   getTemperatureStyle(temperature: number): string {
     return temperature > 0 ? "hot" : "cold";
   }
@@ -51,6 +51,6 @@ export class PrognosisTableComponent implements AfterViewInit {
 
   unixToLocal(dt: number): string {
     var d = new Date(dt*1000);
-    return `${d.getDay()} - ${d.getHours()}`;
+    return `${d.getDate()} - ${d.getHours()}`;
   }
 }
