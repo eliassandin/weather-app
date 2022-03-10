@@ -87,7 +87,7 @@ export class HomeComponent implements OnInit {
   }
   unixToLocal(dt: number): string {
     var d = new Date(dt*1000);
-    return `${d.getDay()} - ${d.getHours()}`;
+    return `${d.getDate()} - ${d.getHours()}`;
   }
   showInfo(data : GeoData){
     console.log(data.lon + ' '+ data.lat);
