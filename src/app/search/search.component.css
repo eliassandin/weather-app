@@ -1,12 +1,27 @@
 .example-form {
-  min-width: 150px;
-  max-width: 350px;
-  width: 100%;
-  left: 0px;
-  bottom: 0px; 
+  min-width: 100px;
+ 
+  width: 40%;
+  
+   
+  margin: auto;
+  
 }
-.wrap {
-	
+
+.formular{
+display:  flex;
+justify-content: center;
+align-items: center;
+flex-direction:  column;
+}
+
+.form-control{
+}
+.header{
+	display:  flex;
+justify-content: center;
+align-items: center;
+flex-direction:  column;
 }
 
 .example-full-width {

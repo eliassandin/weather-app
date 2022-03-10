@@ -13,7 +13,7 @@ export class SearchComponent implements OnInit {
   @Output() sendGeoData: EventEmitter<GeoData> = new EventEmitter();
   submitted = false;
 
-  model = {name: 'hej'};
+  model = {name: 'Ex.Lund'};
 
   private url = 'http://api.openweathermap.org/geo/1.0/direct?q=London&limit=5&appid=1766139ca73a00ae488fad64f5a917eb';
 
@@ -32,6 +32,7 @@ export class SearchComponent implements OnInit {
   showInfo(data : GeoData){
     console.log(data.lon + ' '+ data.lat);
     this.sendGeoData.emit(data);
+    this.locationList = [];
   }
   getPosts() {
 	return this.http.get(this.url);

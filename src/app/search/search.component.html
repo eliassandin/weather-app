@@ -1,16 +1,11 @@
 
-
+<h1 class = "header"> Our Weather App</h1>
   <div [hidden]="submitted">
-    <mat-toolbar color="primary" >
-    <mat-toolbar-row class="bg-color-primary" >
-      <span>My App</span>
+      
       <span class="example-spacer"></span>
-      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-        <mat-icon>menu</mat-icon>
-      </button>
-    </mat-toolbar-row>
-    </mat-toolbar>
- <form  (ngSubmit)="onSubmit()" #searchCity="ngForm">
+      
+
+ <form  (ngSubmit)="onSubmit()" #searchCity="ngForm" class= "formular" >
     <mat-form-field class="example-form" appearance="fill"  >
         <mat-label>Search City</mat-label>
           <input matInput #message maxlength="256" placeholder="Ex. London " 
@@ -32,7 +27,9 @@
         </a>
       </mat-nav-list>
      <!-- - -->
-  <button type="submit" class="btn btn-success" [disabled]="!searchCity.form.valid">Submit</button>
+  
+   
+
     </form>
     </div>
     
