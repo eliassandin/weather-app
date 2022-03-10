@@ -40,6 +40,14 @@ export class PrognosisTableComponent implements AfterViewInit, OnChanges {
     this.table.dataSource = this.dataSource;
   }
 
+  getPrecipitation(weather: any): number {
+    if (weather?.rain)
+      return weather.rain["1h"]
+    if (weather?.snow)
+      return weather.snow["1h"]
+    return 0
+  }
+
   getTimeOfDayStyle(dt: number): string {
     var ctime = new Date(dt*1000).getHours();
     var stime = new Date(this.dataSource.sunrise*1000).getHours();
@@ -49,7 +57,7 @@ export class PrognosisTableComponent implements AfterViewInit, OnChanges {
     return stime < ctime && ctime <= etime ?
       "day" : "night";
   }
-  
+
   getTemperatureStyle(temperature: number): string {
     return temperature > 0 ? "hot" : "cold";
   }
@@ -60,6 +68,6 @@ export class PrognosisTableComponent implements AfterViewInit, OnChanges {
 
   unixToLocal(dt: number): string {
     var d = new Date(dt*1000);
-    return `${d.getDay()} - ${d.getHours()}`;
+    return `${d.getDate()} - ${d.getHours()}`;
   }
 }

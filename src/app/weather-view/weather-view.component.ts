@@ -60,7 +60,7 @@ export class WeatherViewComponent implements OnInit, OnChanges {
 
   unixToLocal(dt: number): string {
     var d = new Date(dt*1000);
-    return `${d.getDay()} - ${d.getHours()}`;
+    return `${d.getDate()} - ${d.getHours()}`;
   }
 
   isRainy(weather: WeatherData): boolean {
