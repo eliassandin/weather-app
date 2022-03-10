@@ -3,6 +3,7 @@ import { HttpClient } from  '@angular/common/http';
 import { OpenWeatherMapService, OneCallData, WeatherData, WeatherDescription, GeoData } from '../open-weather-map.service';
 import { Output, EventEmitter } from '@angular/core';
 
+
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -42,6 +43,8 @@ export class SearchComponent implements OnInit {
     this.city = form && form.controls['name'] &&
     form.controls['name'].value;
   }
+
+
   
   onSubmit(){
   

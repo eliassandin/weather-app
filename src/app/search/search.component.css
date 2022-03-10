@@ -1,0 +1,35 @@
+.example-form {
+  min-width: 150px;
+  max-width: 350px;
+  width: 100%;
+  left: 0px;
+  bottom: 0px; 
+}
+.wrap {
+	
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.bg-color-whatever {
+	height: 50%;
+	display: flex;
+
+
+}
+.bg-color-primary {
+	height: 50%;
+	display: flex;
+	background-color: primary;
+	 
+}
+.box {
+  box-sizing: border-box;
+}
+

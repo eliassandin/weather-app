@@ -1,4 +1,6 @@
 <app-search (sendGeoData)="setData($event)"></app-search>
+<app-home (sendGeoData)="setData($event)"></app-home>
 <app-weather-view [location] = "data" ></app-weather-view>
+
 
 <router-outlet></router-outlet>

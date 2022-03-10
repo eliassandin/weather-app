@@ -6,18 +6,23 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SearchComponent } from './search/search.component';
 import { FormsModule } from '@angular/forms';
-
 import { WeatherViewComponent } from './weather-view/weather-view.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import {MatListModule} from '@angular/material/list';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { HomeComponent } from './home/home.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchComponent,
-    WeatherViewComponent
+    WeatherViewComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +32,10 @@ import {MatListModule} from '@angular/material/list';
     MatIconModule,
     MatTableModule,
     BrowserAnimationsModule,
-    MatListModule
+    MatListModule,
+    MatInputModule,
+    MatButtonModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
