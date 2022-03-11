@@ -32,12 +32,23 @@ export class PrognosisTableComponent implements AfterViewInit, OnChanges {
   @Input() defaultPageOption: number = 24;
 
   ngOnChanges(changes: SimpleChanges): void {
-      this.table.dataSource = this.dataSource;
+      console.log("Ennter OnChange");
+      if(this.table){
+        this.dataSource.paginator = this.paginator;
+        console.log("OnChange prognosis", changes);
+        console.log("OnChange datasource ", this.dataSource);
+        this.table.dataSource = this.dataSource;
+      }
+      throw undefined;
   }
 
   ngAfterViewInit(): void {
+    console.log("AfterViewInit 1", this.table.dataSource);
+    console.log("AfterViewInit 2", this.dataSource);
     this.dataSource.paginator = this.paginator;
     this.table.dataSource = this.dataSource;
+    console.log("AfterViewInit 3", this.table.dataSource);
+    console.log("AfterViewInit 4", this.dataSource);
   }
 
   getPrecipitation(weather: any): number {

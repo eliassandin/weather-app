@@ -21,6 +21,8 @@ export class WeatherViewComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     console.log("WeatherViewComponent received Change!")
+    this.hourlyTableObject = new PrognosisTableDataSource();
+    this.weeklyTableObject = new PrognosisTableDataSource();
     this.update();
   }
 
@@ -114,8 +116,6 @@ export class WeatherViewComponent implements OnInit, OnChanges {
           this.hourlyTableObject.sunset = c.sunset;
 
           this.daily = response.daily;
-
-          console.log(this.daily);
           this.weeklyTableObject.data = this.daily;
       }
     );
